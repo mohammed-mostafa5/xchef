@@ -6,6 +6,7 @@ use App\Http\Requests\AdminPanel\CreateAdminRequest;
 use App\Http\Requests\AdminPanel\UpdateAdminRequest;
 use App\Repositories\AdminPanel\AdminRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Administrator;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -55,7 +56,11 @@ class AdminController extends AppBaseController
     public function store(CreateAdminRequest $request)
     {
         $input = $request->all();
-        $admin = $this->adminRepository->create($input);
+        $adminable = Administrator::create(['name' => request('name')]);
+
+        $input['adminable_type'] = Administrator::class;
+        $input['adminable_id'] = Administrator::class;
+        $admin = $adminable->admin()->create($input);
 
         Flash::success(__('messages.saved', ['model' => __('models/admins.singular')]));
 
@@ -112,7 +117,8 @@ class AdminController extends AppBaseController
      */
     public function update($id, UpdateAdminRequest $request)
     {
-        dd($request->all());
+        request()->validate([ 'email' => "required|email|max:191|unique:admins,email,$id"]);
+
         $admin = $this->adminRepository->find($id);
 
         if (empty($admin)) {
@@ -122,6 +128,7 @@ class AdminController extends AppBaseController
         }
 
         $admin = $this->adminRepository->update($request->all(), $id);
+        $admin->adminable->update(['name' => request('name')]);
 
         Flash::success(__('messages.updated', ['model' => __('models/admins.singular')]));
 

@@ -3,5 +3,25 @@ table form {
 }
 
 tr.datatable-row {
-    border-bottom: 1px solid #EBEDF3;
+    border-bottom: 1px solid #ebedf3;
+}
+
+.show-fields .form-group {
+    margin: 0.2rem 0.2rem;
+    padding: 1.2rem;
+    vertical-align: top;
+    width: 49%;
+    float: left;
+    display: grid;
+    background: #eef0f88a;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    justify-items: center;
+}
+.show-fields .form-group:hover {
+    background: #1e1e2dc7;
+    color: #eee;
+}
+.show-fields .form-group:hover label {
+    color: #eee;
 }

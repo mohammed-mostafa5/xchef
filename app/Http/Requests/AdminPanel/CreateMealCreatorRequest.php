@@ -3,9 +3,9 @@
 namespace App\Http\Requests\AdminPanel;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Admin;
+use App\Models\MealCreator;
 
-class UpdateAdminRequest extends FormRequest
+class CreateMealCreatorRequest extends FormRequest
 {
 
     /**
@@ -25,10 +25,6 @@ class UpdateAdminRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = Admin::$rules;
-
-        $rules['password'] = 'nullable';
-        // $rules['email'] = $rules['email'].",".$this->route("admin");
-        return $rules;
+        return MealCreator::$rules;
     }
 }

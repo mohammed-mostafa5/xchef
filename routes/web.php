@@ -88,9 +88,10 @@ Route::group(
             Route::resource('pages.images', 'imagesController')->shallow();
 
             Route::resource('options', OptionController::class);
-           
+
             Route::resource('notifications', NotificationController::class);
 
+            Route::resource('mealCreators', MealCreatorController::class);
         });
     }
 );
@@ -98,4 +99,3 @@ Route::group(
 ///////////////////////////////////////////////////////////////////////////
 ///								End admin panel routes 					///
 ///////////////////////////////////////////////////////////////////////////
-

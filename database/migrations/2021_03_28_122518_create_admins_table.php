@@ -16,13 +16,20 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->string('email');
             $table->string('password');
             $table->tinyInteger('status')
                 ->default(1)
                 ->comment('0 => Inactive, 1 => Active');
             $table->timestamp('approved_at')->nullable();
+            $table->morphs('adminable');
+            $table->timestamps();
+        });
+
+        Schema::create('administrators', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+
             $table->timestamps();
         });
     }

@@ -1,13 +1,13 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', __('models/admins.fields.name').':') !!}
-    {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 191]) !!}
+    {!! Form::text('name', $admin->adminable->name ?? null, ['class' => 'form-control','maxlength' => 191]) !!}
 </div>
 
 <!-- Email Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('email', __('models/admins.fields.email').':') !!}
-    {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 191]) !!}
+    {!! Form::email('email', $admin->adminable->email ?? null, ['class' => 'form-control','maxlength' => 191]) !!}
 </div>
 
 <!-- Password Field -->

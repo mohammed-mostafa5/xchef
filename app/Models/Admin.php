@@ -21,11 +21,13 @@ class Admin extends Authenticatable
 
 
     public $fillable = [
-        'name',
+        // 'name',
         'email',
         'password',
         'status',
-        'remember_token'
+        'remember_token',
+        'adminable_type',
+        'adminable_id',
     ];
 
     /**
@@ -35,11 +37,11 @@ class Admin extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
+        // 'name' => 'string',
         'email' => 'string',
         'password' => 'string',
         'status' => 'integer',
-        'remember_token' => 'string'
+        'remember_token' => 'string',
     ];
 
     /**
@@ -48,8 +50,8 @@ class Admin extends Authenticatable
      * @var array
      */
     public static $rules = [
-        'name' => 'required|string|max:191',
-        'email' => 'required|email|max:191|unique:admins',
+        // 'name' => 'required|string|max:191',
+        // 'email' => "required|email|max:191|unique:admins,email,id",
         'password' => 'required|min:6|max:191|confirmed',
         'status' => 'required|in:0,1'
     ];
@@ -63,6 +65,13 @@ class Admin extends Authenticatable
     public function setPasswordAttribute($value)
     {
     	if ($value) $this->attributes['password'] = bcrypt($value);
+    }
+
+    ################################ Relations ##################################
+
+    public function adminable()
+    {
+        return $this->morphTo();
     }
 
 }

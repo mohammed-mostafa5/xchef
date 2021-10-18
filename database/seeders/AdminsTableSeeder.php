@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Administrator;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,12 +17,17 @@ class AdminsTableSeeder extends Seeder
     {
         if (!DB::table('admins')->first()) {
             DB::table('admins')->insert([
-                'name' => 'admin',
+                // 'name' => 'admin',
                 'email' => 'admin@email.com',
                 'password' => bcrypt('xchefvillage'),
+                'adminable_type' => Administrator::class,
+                'adminable_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
                 'approved_at' => now(),
+            ]);
+            DB::table('administrators')->insert([
+                'name' => 'admin',
             ]);
         }
     }

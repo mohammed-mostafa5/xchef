@@ -24,7 +24,6 @@
     </div>
 </div>
 <!--end::Search Form-->
-<!--end: Search Form-->
 <!--begin: Datatable-->
 <table class="datatable datatable-bordered datatable-head-custom table-hover" id="kt_datatable">
     <thead>
@@ -38,7 +37,7 @@
     <tbody>
         @foreach($admins as $admin)
         <tr>
-            <td>{{ $admin->name }}</td>
+            <td>{{ $admin->adminable->name ?? '' }}</td>
             <td>{{ $admin->email }}</td>
             <td>{{ $admin->status}}</td>
             <td nowrap>
