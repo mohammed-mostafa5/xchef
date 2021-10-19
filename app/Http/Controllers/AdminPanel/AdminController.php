@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\AdminPanel;
 
-use App\Http\Requests\AdminPanel\CreateAdminRequest;
-use App\Http\Requests\AdminPanel\UpdateAdminRequest;
-use App\Repositories\AdminPanel\AdminRepository;
-use App\Http\Controllers\AppBaseController;
-use App\Models\Administrator;
-use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\Administrator;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\AdminPanel\AdminRepository;
+use App\Http\Requests\AdminPanel\CreateAdminRequest;
+use App\Http\Requests\AdminPanel\UpdateAdminRequest;
 
 class AdminController extends AppBaseController
 {
@@ -43,7 +44,8 @@ class AdminController extends AppBaseController
      */
     public function create()
     {
-        return view('adminPanel.admins.create');
+        $roles = Role::pluck('name', 'id');
+        return view('adminPanel.admins.create',compact('roles'));
     }
 
     /**
@@ -61,6 +63,8 @@ class AdminController extends AppBaseController
         $input['adminable_type'] = Administrator::class;
         $input['adminable_id'] = Administrator::class;
         $admin = $adminable->admin()->create($input);
+
+        $admin->syncRoles([request('role')]);
 
         Flash::success(__('messages.saved', ['model' => __('models/admins.singular')]));
 
@@ -97,14 +101,14 @@ class AdminController extends AppBaseController
     public function edit($id)
     {
         $admin = $this->adminRepository->find($id);
-
+        $roles = Role::pluck('name', 'id');
         if (empty($admin)) {
             Flash::error(__('messages.not_found', ['model' => __('models/admins.singular')]));
 
             return redirect(route('adminPanel.admins.index'));
         }
 
-        return view('adminPanel.admins.edit')->with('admin', $admin);
+        return view('adminPanel.admins.edit', compact('roles', 'admin'));
     }
 
     /**
@@ -120,6 +124,8 @@ class AdminController extends AppBaseController
         request()->validate([ 'email' => "required|email|max:191|unique:admins,email,$id"]);
 
         $admin = $this->adminRepository->find($id);
+
+        $admin->syncRoles([request('role')]);
 
         if (empty($admin)) {
             Flash::error(__('messages.not_found', ['model' => __('models/admins.singular')]));

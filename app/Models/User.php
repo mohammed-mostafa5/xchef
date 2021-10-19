@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail, JWTSubject
+
 {
     use HasFactory, Notifiable;
 
@@ -17,9 +20,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'phone',
+        'status',
+        'member_id',
         'email',
         'password',
+        'balance',
+        'points',
+        'social_status', //  1 => Single, 2 => Married
+        'num_of_children',
     ];
 
     /**
@@ -40,4 +51,63 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    // Rest omitted for brevity
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+
+
+
+    public function setPasswordAttribute($value)
+    {
+        return $this->attributes['password'] = Hash::make($value);
+    }
+
+    /////////////////// Appends ///////////////////
+
+    public $appends = ['status_text'];
+
+    public function getStatusTextAttribute()
+    {
+        switch ($this->status) {
+            case 0:
+                return 'Inactive';
+                break;
+            case 1:
+                return 'Lead';
+                break;
+            case 2:
+                return 'Member';
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+
+    ///////////////////////// Relations ////////////////////////////
+
 }

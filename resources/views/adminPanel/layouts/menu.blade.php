@@ -47,7 +47,7 @@
             @endcan
 
             @can('roles view')
-            <li class="menu-item  {{ Request::is('**roles*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+            <li class="menu-item  {{ Request::is('*roles*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{ route('adminPanel.roles.index') }}" class="menu-link ">
                     <span class="svg-icon menu-icon">
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -70,7 +70,7 @@
 </li>
 
 {{-- Pages --}}
-<li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+{{-- <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <i class="menu-icon flaticon-layers"></i>
         <span class="menu-text">Pages</span>
@@ -291,7 +291,7 @@
 
         </ul>
     </div>
-</li>
+</li> --}}
 
 {{-- Attributes --}}
 {{-- <li class="menu-item  menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">

@@ -30,6 +30,7 @@
         <tr>
             <th>@lang('models/admins.fields.name')</th>
             <th>@lang('models/admins.fields.email')</th>
+            <th>@lang('models/admins.fields.roles')</th>
             <th>@lang('models/admins.fields.status')</th>
             <th nowrap>@lang('crud.action')</th>
         </tr>
@@ -39,6 +40,7 @@
         <tr>
             <td>{{ $admin->adminable->name ?? '' }}</td>
             <td>{{ $admin->email }}</td>
+            <td>{{ $admin->roles[0]->name}}</td>
             <td>{{ $admin->status}}</td>
             <td nowrap>
                 {!! Form::open(['route' => ['adminPanel.admins.destroy', $admin->id], 'method' => 'delete']) !!}

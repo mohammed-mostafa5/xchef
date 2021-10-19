@@ -41,13 +41,12 @@
     <tbody>
         @foreach($mealCreators as $mealCreator)
         <tr>
-            {{dd($mealCreator->admin->status)}}
-            <td><img src="{{$mealCreator->logo_original_path}}" width="100" onerror="this.src='{{asset('uploads/images/original/default.png')}}'" /></td>
+            <td><img src="{{$mealCreator->logo_original_path}}" width="60" onerror="this.src='{{asset('uploads/images/original/default.png')}}'" /></td>
             <td>{{ $mealCreator->name }}</td>
-            <td>{{ $mealCreator->email }}</td>
+            <td>{{ $mealCreator->admin->email ?? '' }}</td>
             <td>{{ $mealCreator->address }}</td>
-            <td>{{ $mealCreator->delivery_from }}</td>
-            <td>{{ $mealCreator->delivery_to }}</td>
+            <td>{{ $mealCreator->delivery_from }}  Min</td>
+            <td>{{ $mealCreator->delivery_to }}  Min</td>
             <td>{{ $mealCreator->admin->status ?? '' }}</td>
             <td nowrap>
                 {!! Form::open(['route' => ['adminPanel.mealCreators.destroy', $mealCreator->id], 'method' => 'delete']) !!}

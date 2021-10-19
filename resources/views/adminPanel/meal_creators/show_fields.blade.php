@@ -1,9 +1,20 @@
+<!-- Photo Field -->
+<div class="form-group">
+    {!! Form::label('photo', __('models/mealCreators.fields.photo').':') !!}
+    <b><img onerror="this.src={{asset('uploads/images/original/default.png')}}" src="{{$mealCreator->photo_original_path}}" alt="{{$mealCreator->name}}" width="300"></b>
+</div>
+
+<!-- logo Field -->
+<div class="form-group">
+    {!! Form::label('logo', __('models/mealCreators.fields.logo').':') !!}
+    <b><img onerror="this.src={{asset('uploads/images/original/default.png')}}" src="{{$mealCreator->logo_original_path}}" alt="{{$mealCreator->name}}" width="100"></b>
+</div>
+
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', __('models/mealCreators.fields.id').':') !!}
     <b>{{ $mealCreator->id }}</b>
 </div>
-
 
 <!-- Name Field -->
 <div class="form-group">
@@ -11,18 +22,10 @@
     <b>{{ $mealCreator->name }}</b>
 </div>
 
-
 <!-- Email Field -->
 <div class="form-group">
     {!! Form::label('email', __('models/mealCreators.fields.email').':') !!}
-    <b>{{ $mealCreator->email }}</b>
-</div>
-
-
-<!-- Password Field -->
-<div class="form-group">
-    {!! Form::label('password', __('models/mealCreators.fields.password').':') !!}
-    <b>{{ $mealCreator->password }}</b>
+    <b>{{ $mealCreator->admin->email ?? '' }}</b>
 </div>
 
 
@@ -47,12 +50,6 @@
 </div>
 
 
-<!-- Photo Field -->
-<div class="form-group">
-    {!! Form::label('photo', __('models/mealCreators.fields.photo').':') !!}
-    <b>{{ $mealCreator->photo }}</b>
-</div>
-
 
 <!-- Delivery From Field -->
 <div class="form-group">
@@ -71,7 +68,7 @@
 <!-- Status Field -->
 <div class="form-group">
     {!! Form::label('status', __('models/mealCreators.fields.status').':') !!}
-    <b>{{ $mealCreator->status }}</b>
+    <b>{{ $mealCreator->admin->status ? __('lang.active') : __('lang.inactive') }}</b>
 </div>
 
 

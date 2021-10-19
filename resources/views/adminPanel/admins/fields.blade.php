@@ -21,6 +21,13 @@
     {!! Form::label('password_confirmation', __('models/admins.fields.password_confirmation').':') !!}
     {!! Form::password('password_confirmation', ['class' => 'form-control','minlength' => 6,'maxlength' => 191]) !!}
 </div>
+{{-- {{dd($admin->roles[0]->name)}} --}}
+<!-- Role Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('role', __('models/admins.fields.roles').':') !!}
+    {!! Form::select('role', $roles, $admin->roles[0]->id ?? null, ['class' => 'form-control','placeholder' => 'Select Role']) !!}
+</div>
+
 
 <!-- Status Field -->
 <div class="form-group col-sm-12">
