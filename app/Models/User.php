@@ -23,14 +23,12 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'first_name',
         'last_name',
         'phone',
+        'verify_code',
         'status',
         'member_id',
         'email',
         'password',
         'balance',
-        'points',
-        'social_status', //  1 => Single, 2 => Married
-        'num_of_children',
     ];
 
     /**
@@ -86,25 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 
     /////////////////// Appends ///////////////////
 
-    public $appends = ['status_text'];
 
-    public function getStatusTextAttribute()
-    {
-        switch ($this->status) {
-            case 0:
-                return 'Inactive';
-                break;
-            case 1:
-                return 'Lead';
-                break;
-            case 2:
-                return 'Member';
-                break;
-
-            default:
-                break;
-        }
-    }
 
 
 

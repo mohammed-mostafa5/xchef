@@ -46,22 +46,10 @@ return [
             'provider' => 'admins',
         ],
 
-
         'api' => [
-            'merchant' => [
-                'driver' => 'jwt',
-                'provider' => 'merchant',
-                'hash' => false,
-            ],
-
-            'user' => [
-                'driver' => 'jwt',
-                'provider' => 'user',
-                'hash' => false,
-            ],
-            // 'driver' => 'jwt',
-            // 'provider' => 'customer',
-            // 'hash' => false,
+            'driver' => 'jwt',
+            'provider' => 'users',
+            'hash' => false,
         ],
     ],
 

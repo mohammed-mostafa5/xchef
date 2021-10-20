@@ -226,7 +226,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <!--begin::Toggle-->
                                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                     @php
-                                    $admin = auth('admin')->user()->name??'Username';
+                                    $admin = auth('admin')->user()->adminable->name ?? 'Username';
                                     @endphp
                                     <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                                         <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
