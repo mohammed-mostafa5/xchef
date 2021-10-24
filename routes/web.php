@@ -89,9 +89,11 @@ Route::group(
 
             Route::resource('options', OptionController::class);
 
-            Route::resource('notifications', NotificationController::class);
+            // Route::resource('notifications', NotificationController::class);
 
             Route::resource('mealCreators', MealCreatorController::class);
+
+            Route::resource('categories', CategoryController::class);
         });
     }
 );
