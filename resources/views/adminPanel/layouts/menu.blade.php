@@ -353,7 +353,7 @@
     </a>
 </li>
 
-<li class="menu-item  {{ Request::is('adminPanel/nutritionalProfiles*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
+<li class="menu-item  {{ Request::is('*adminPanel/nutritionalProfiles*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
     <a href="{{ route('adminPanel.nutritionalProfiles.index') }}" class="menu-link ">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -370,7 +370,7 @@
     </a>
 </li>
 
-<li class="menu-item  {{ Request::is('adminPanel/cuisines*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
+<li class="menu-item  {{ Request::is('*adminPanel/cuisines*') ? 'menu-item-active' : '' }}" aria-haspopup="true" >
     <a href="{{ route('adminPanel.cuisines.index') }}" class="menu-link ">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
