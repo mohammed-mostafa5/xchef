@@ -3,14 +3,14 @@
     @foreach ( config('langs') as $locale => $name)
 
     <li class="nav-item">
-        <a class="nav-link {{$locale == 'en' ?'active':''}}" id="{{$name}}-tab" data-toggle="pill" href="#{{$name}}" role="tab" aria-controls="{{$name}}" aria-selected="{{ request('languages') == $locale  ? 'true' : 'false'}}">{{$name}}</a>
+        <a class="nav-link {{$locale == 'en' ? 'active' : ''}}" id="{{$name}}-tab" data-toggle="pill" href="#{{$name}}" role="tab" aria-controls="{{$name}}" aria-selected="{{ request('languages') == $locale  ? 'true' : 'false'}}">{{$name}}</a>
     </li>
 
     @endforeach
 </ul>
 <div class="tab-content mt-5" id="myTabContent">
     @foreach ( config('langs') as $locale => $name)
-    <div class="tab-pane fade {{request('languages') == $locale?'show active':''}}" id="{{$name}}" role="tabpanel" aria-labelledby="{{$name}}-tab">
+    <div class="tab-pane fade {{ $locale == 'en' ? 'show active' : ''}}" id="{{$name}}" role="tabpanel" aria-labelledby="{{$name}}-tab">
 
         <!-- Name Field -->
         <div class="form-group col-sm-6">

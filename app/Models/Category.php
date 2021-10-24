@@ -29,7 +29,6 @@ class Category extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = ['parent_id', 'status', 'icon'];
-    public $translatedAttributes = ['name', 'brief'];
 
 
     /**
@@ -46,6 +45,7 @@ class Category extends Model
         'status' => 'integer'
     ];
 
+    public $translatedAttributes = ['name', 'brief'];
 
     public static function rules()
     {

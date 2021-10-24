@@ -94,6 +94,10 @@ Route::group(
             Route::resource('mealCreators', MealCreatorController::class);
 
             Route::resource('categories', CategoryController::class);
+
+            Route::resource('nutritionalProfiles', NutritionalProfileController::class);
+
+            Route::resource('cuisines', CuisineController::class);
         });
     }
 );
